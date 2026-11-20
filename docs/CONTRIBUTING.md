@@ -6,6 +6,29 @@ several parts look wrong until you know the reason.
 
 ---
 
+## What belongs in this repo
+
+Loam is an open-source tool for creating a seeded, throwaway database and the stack around it:
+reading a schema, generating data that is correct against it, loading it fast, and running the
+containers that hold it. Anything that makes that better belongs here.
+
+There is also a commercial product built on top of Loam. A handful of areas — pre-authenticated
+sessions and persona login, copy-on-write state branching, and anything needing a hosted control
+plane, accounts or teams — live there instead.
+
+[`../LATER.md`](../LATER.md) draws the line explicitly. It has three sections: **Help wanted** (real
+gaps, patches welcome, several are small), **Known limitations**, and **Not planned for this repo**.
+
+This is written down so that nobody spends a weekend on something that would then be declined. It is
+not a judgement on those ideas. **If one of them interests you anyway, open an issue** — a
+conversation beforehand is cheaper than a rejected pull request afterwards.
+
+Looking for somewhere to start? The *Help wanted* section is the list, and
+[*Support a new column type*](#support-a-new-column-type) below is the smallest real change in the
+codebase: four files, about fifteen lines.
+
+---
+
 ## Setup
 
 You need:
@@ -108,8 +131,9 @@ Every job prints the exact local command to reproduce it on failure.
   `.golangci.yml` because it is a value in the fixture's own `orders.status` CHECK, not prose.
 - **Tests assert behaviour, not shape.** A test that only proves a function returns something is
   worse than no test, because it looks like coverage.
-- **No new dependencies** without a real reason. The set is cobra, yaml.v3, pgx/v5, gofakeit/v7, and
-  spec §3 forbids more.
+- **No new dependencies** without a real reason. The whole set is cobra, yaml.v3, pgx/v5 and
+  gofakeit/v7. Adding a fifth is not forbidden, but say in the pull request why the standard library
+  or something already here would not do.
 
 ---
 

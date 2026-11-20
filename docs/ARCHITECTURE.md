@@ -357,8 +357,8 @@ random generation does not de-duplicate, so one would fail the acceptance test f
 
 ## Things that are deliberately not done
 
-Do not "fix" these without reading the reasoning first — all of it is in
-[`../LATER.md`](../LATER.md), and the scope boundaries are spec §2.
+Do not "fix" these without reading the reasoning first. [`../LATER.md`](../LATER.md) has all of it,
+and draws the boundary between what this repo wants patches for and what it does not.
 
 - Loam does **not** run your migrations. It seeds whatever is already in `public`. An empty
   schema is normal and non-fatal; the workflow is `up` → run migrations → `seed`.
@@ -371,4 +371,6 @@ Do not "fix" these without reading the reasoning first — all of it is in
 - `GENERATED ALWAYS AS IDENTITY` keys are skipped with a warning.
 - Composite primary keys get correlated values (`tenant_id=1237, user_ref=1238`) — valid and unique,
   but unrealistic. Realism polish, not correctness.
-- No Kubernetes, cloud, dashboard, accounts, or daemon. None of the §9 stretch goals were started.
+- No Kubernetes, cloud, dashboard, accounts, or daemon. The first of those is wanted and needs the
+  runtime behind an interface; the rest are outside this repo — see
+  [`../LATER.md`](../LATER.md#not-planned-for-this-repo).
